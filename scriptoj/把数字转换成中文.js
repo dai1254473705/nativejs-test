@@ -2,7 +2,7 @@
  * 完成将 toChineseNum， 可以将数字转换成中文大写的表示，处理到万级别，例如 toChineseNum(12345)，返回 一万二千三百四十五。
  * 12345 ==> 一万二千三百四十五
  * 1212 1002
- * 一千二百一十二 
+ * 一千二百一十二
  */
 const toChineseNum = (num) => {
     if (!num) return '';
@@ -59,15 +59,8 @@ const toChineseNum = (num) => {
             }
         });
 
-        // console.log(linshiarr2);
-        for (let i = linshiarr2.length - 1; i > 0; i--) {
-            console.log("i", linshiarr2[i]);
-
-            if (linshiarr2[i] != '零') {
-                break;
-            } else {
-                linshiarr2.pop();
-            }
+        while(linshiarr2[0]=='零'){
+          linshiarr2.shift();
         }
         two_res = linshiarr2.reverse().join('') + '万';
     }
@@ -75,15 +68,15 @@ const toChineseNum = (num) => {
     // console.log(one_res);
     // console.log(two_res);
     result = two_res + one_res;
-    result = result.replace(/零零/g, '零');
-    console.log(/零零/g.test(result));
+    result = result.replace(/零零+/g, '零');
+    // console.log(/零零/g.test(result));
 
     //去掉没有用的零
     let resultarr = result.split('');
     console.log("result", result);
     console.log("resultarr", resultarr);
     for (let i = resultarr.length - 1; i > 0; i--) {
-        console.log("i", resultarr[i]);
+        // console.log("i", resultarr[i]);
 
         if (resultarr[i] != '零') {
             // console.log(result);
@@ -94,4 +87,4 @@ const toChineseNum = (num) => {
     }
     return result;
 }
-toChineseNum(45002004);
+toChineseNum(45770007);
